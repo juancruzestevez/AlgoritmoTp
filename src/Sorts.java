@@ -1,7 +1,7 @@
 public class Sorts {
     public static void main(String[] args) {
         int[] array = {2,1,4,5,3,7};
-        selectionSort(array, array.length);
+        selectionSort(array);
         for (int i = 0; i < array.length; i++) {
             System.out.println(array[i]);
         }
@@ -110,13 +110,14 @@ public class Sorts {
 
     //2)g)
 
-    public static void selectionSort(int a[], int n) {
+    public static void selectionSort(int[] a) {
+        int n = a.length;
         recurSelectionSort(a, n, 0);
     }
 
     // Recursive selection sort. n is size of a[] and index
     // is index of starting element.
-    static void recurSelectionSort(int a[], int n, int index) {
+    static void recurSelectionSort(int[] a, int n, int index) {
 
         // Return when starting and size are same
         if (index == n)
@@ -137,7 +138,7 @@ public class Sorts {
     }
 
     // Return minimum index
-    static int minIndex(int a[], int i, int j) {
+    static int minIndex(int[] a, int i, int j) {
         if (i == j)
             return i;
 
