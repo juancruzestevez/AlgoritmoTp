@@ -1,12 +1,20 @@
 public class Sorts {
     public static void main(String[] args) {
-        String[] arrayString = {"manu", "sos", "altisimo", "pete"};
-        SortSelection(arrayString);
-        for (int i = 0; i < arrayString.length; i++) {
-            System.out.println(arrayString[i]);
+        int[] array = {2,1,4,5,3,7};
+        selectionSort(array, array.length);
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
         }
     }
 
+    /*2)a)
+    Selección: tipo de sort que busca un valor mínimo en un array y lo ubica en el primer lugar. Hace lo mismo para el resto del array colocándolos uno seguido del otro.
+    Inserción: tipo de sort que cuando encuentra un valor que no corresponde al orden establecido busca el lugar que debería tomar en la parte del array previamente ordenada.
+    Burbujeo: tipo de sort que itera varias veces sobre el array cambiando de lugar los valores que no estén en orden evaluando de a pares.
+
+     */
+
+    //2)b)
     public static void SortSelection(int[] array){
         for (int i = 0; i < array.length; i++) {
             int index = i;
@@ -33,6 +41,7 @@ public class Sorts {
         }
     }
 
+
     public static void SortBubble(int[] array){
         int n = array.length;
         int temp = 0;
@@ -48,6 +57,7 @@ public class Sorts {
         }
     }
 
+    //2)c)
     public static int[] RandomArray(int N){
         int[] array = new int[N];
         for (int i = 0; i < array.length; i++) {
@@ -58,6 +68,7 @@ public class Sorts {
         return array;
     }
 
+    //2)d)
     public static void SortSelection(String[] array){
         for (int i = 0; i < array.length; i++) {
             int index = i;
@@ -95,5 +106,45 @@ public class Sorts {
                 }
             }
         }
+    }
+
+    //2)g)
+
+    public static void selectionSort(int a[], int n) {
+        recurSelectionSort(a, n, 0);
+    }
+
+    // Recursive selection sort. n is size of a[] and index
+    // is index of starting element.
+    static void recurSelectionSort(int a[], int n, int index) {
+
+        // Return when starting and size are same
+        if (index == n)
+            return;
+
+        // calling minimum index function for minimum index
+        int k = minIndex(a, index, n-1);
+
+        // Swapping when index nd minimum index are not same
+        if (k != index){
+            // swap
+            int temp = a[k];
+            a[k] = a[index];
+            a[index] = temp;
+        }
+        // Recursively calling selection sort function
+        recurSelectionSort(a, n, index + 1);
+    }
+
+    // Return minimum index
+    static int minIndex(int a[], int i, int j) {
+        if (i == j)
+            return i;
+
+        // Find minimum of remaining elements
+        int k = minIndex(a, i + 1, j);
+
+        // Return minimum of current and remaining.
+        return (a[i] < a[k])? i : k;
     }
 }
